@@ -3,7 +3,7 @@ using Zenject;
 
 namespace SunnyDoggyClicker.UI.Navigation {
     public class ViewScreensSwitcher : MonoBehaviour {
-        [SerializeField] private View[] Screens;
+        [SerializeField] private View[] _screensToSwitch;
 
         private SignalBus _signalBus;
 
@@ -18,12 +18,16 @@ namespace SunnyDoggyClicker.UI.Navigation {
         }
 
         private void OnShowViewSignal(ShowViewSignal view) {
-            foreach (var screenView in Screens) {
+            foreach (var screenView in _screensToSwitch) {
                 if (screenView.Name == view.ViewName) {
-                    screenView.Show();
+                    if (!screenView.IsShown) {
+                        screenView.Show();
+                    }
                 }
                 else {
-                    screenView.Hide();
+                    if (screenView.IsShown) {
+                        screenView.Hide();
+                    }
                 }
             }
         }

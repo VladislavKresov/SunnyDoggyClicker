@@ -1,13 +1,14 @@
-using System;
 using UnityEngine;
-using Zenject;
 
 namespace SunnyDoggyClicker.UI {
     public abstract class View : MonoBehaviour {
         public abstract string Name { get; }
+        private bool _isShown = false;
+        public bool IsShown { get { return _isShown; } }
 
         public void Show() {
             gameObject.SetActive(true);
+            _isShown = true;
             OnShow();
         }
 
@@ -15,6 +16,7 @@ namespace SunnyDoggyClicker.UI {
 
         public void Hide() {
             gameObject.SetActive(false);
+            _isShown = false;
             OnHide();
         }
 
