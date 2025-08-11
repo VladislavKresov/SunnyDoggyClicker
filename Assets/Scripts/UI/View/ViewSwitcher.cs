@@ -1,9 +1,10 @@
+using SunnyDoggyClicker.Signals;
 using UnityEngine;
 using Zenject;
 
-namespace SunnyDoggyClicker.UI.Navigation {
-    public class ViewScreensSwitcher : MonoBehaviour {
-        [SerializeField] private View[] _screensToSwitch;
+namespace SunnyDoggyClicker.UI.View {
+    public class ViewSwitcher : MonoBehaviour {
+        [SerializeField] private View[] _ViewsToSwitch;
 
         private SignalBus _signalBus;
 
@@ -18,7 +19,7 @@ namespace SunnyDoggyClicker.UI.Navigation {
         }
 
         private void OnShowViewSignal(ShowViewSignal view) {
-            foreach (var screenView in _screensToSwitch) {
+            foreach (var screenView in _ViewsToSwitch) {
                 if (screenView.Name == view.ViewName) {
                     if (!screenView.IsShown) {
                         screenView.Show();

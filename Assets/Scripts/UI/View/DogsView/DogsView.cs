@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace SunnyDoggyClicker.UI {
-    public class WeatherView : View {
-        public override string Name => nameof(WeatherView);
+namespace SunnyDoggyClicker.UI.View.Dogs {
+    public class DogsView : View {
+        public override string Name => nameof(DogsView);
 
         protected override void OnHide() {
             Debug.Log($"{Name}::OnHide()");

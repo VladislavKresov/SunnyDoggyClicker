@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SunnyDoggyClicker.UI {
+namespace SunnyDoggyClicker.UI.View {
     public abstract class View : MonoBehaviour {
         public abstract string Name { get; }
         private bool _isShown = false;
