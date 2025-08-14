@@ -1,13 +1,15 @@
 using SunnyDoggyClicker.UI.Elements;
 using SunnyDoggyClicker.Currencies;
 using SunnyDoggyClicker.Signals;
+using SunnyDoggyClicker.UI.ViewModel;
 using UnityEngine;
 using Zenject;
 using UnityEngine.UI;
 
 namespace SunnyDoggyClicker.UI.View.ClickerView {
-    public class ClickerView : View {
+    public class ClickerView : View<ClickerViewModel> {
         public override string Name => nameof(ClickerView);
+
         [SerializeField] private CurrencyGuiInstance _currencyPrefab;
         [SerializeField] private RectTransform _currencyParent;
         [SerializeField] private Button _clickButton;
@@ -16,7 +18,12 @@ namespace SunnyDoggyClicker.UI.View.ClickerView {
         [Inject] private readonly CurrencyBank _currencyBank;
         [Inject] private readonly SignalBus _signalBus;
 
-        private void Awake() {
+        protected override void OnAwake() {
+            InitializeCurrencyUI();
+            SetupClickButton();
+        }
+
+        private void InitializeCurrencyUI() {
             if (_currencyAssets != null) {
                 foreach (var currencyAsset in _currencyAssets) {
                     var currencyInstance = Instantiate(_currencyPrefab, _currencyParent);
@@ -24,16 +31,14 @@ namespace SunnyDoggyClicker.UI.View.ClickerView {
                     currencyInstance.SetForCurrencyAsset(currencyAsset, _currencyBank);
                 }
             }
-
-            _clickButton?.onClick.AddListener(() => _signalBus?.Fire(new ClickerButtonUserClick()));
         }
 
-        protected override void OnHide() {
-            Debug.Log($"{Name}::OnHide()");
+        private void SetupClickButton() {
+            _clickButton?.onClick.AddListener(() =>
+                _signalBus?.Fire(new ClickerButtonUserClick()));
         }
 
-        protected override void OnShow() {
-            Debug.Log($"{Name}::OnShow()");
-        }
+        protected override void OnShow() { }
+        protected override void OnHide() { }
     }
 }

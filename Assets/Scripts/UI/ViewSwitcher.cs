@@ -1,9 +1,11 @@
+using SunnyDoggyClicker.Audio;
 using SunnyDoggyClicker.Signals;
 using UnityEngine;
 using Zenject;
 
 namespace SunnyDoggyClicker.UI.View {
     public class ViewSwitcher : MonoBehaviour {
+        [Inject] private readonly SoundPlayer _soundPlayer;
         [SerializeField] private View[] _ViewsToSwitch;
 
         private SignalBus _signalBus;
@@ -21,14 +23,11 @@ namespace SunnyDoggyClicker.UI.View {
         private void OnShowViewSignal(ShowViewSignal view) {
             foreach (var screenView in _ViewsToSwitch) {
                 if (screenView.Name == view.ViewName) {
-                    if (!screenView.IsShown) {
-                        screenView.Show();
-                    }
+                    screenView.Show();
+                    _soundPlayer.Play(0);
                 }
                 else {
-                    if (screenView.IsShown) {
-                        screenView.Hide();
-                    }
+                    screenView.Hide();
                 }
             }
         }

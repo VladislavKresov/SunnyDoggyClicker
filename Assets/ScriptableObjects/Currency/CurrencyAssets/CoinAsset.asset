@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: CurrencyAsset
+  m_Name: CoinAsset
   m_EditorClassIdentifier: Assembly-CSharp:SunnyDoggyClicker.Currencies:CurrencyAsset
   Currency: {fileID: 11400000, guid: ff3616f955cbdc543b9b7792ab5dbb63, type: 2}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 24205000a08e6994c9133e16a6f5cc49, type: 3}
   TextColor: {r: 0.9803922, g: 0.67058825, b: 0.2901961, a: 1}

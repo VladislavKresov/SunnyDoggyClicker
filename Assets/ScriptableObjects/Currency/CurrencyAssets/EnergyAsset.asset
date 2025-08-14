@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnergyAsset
   m_EditorClassIdentifier: Assembly-CSharp:SunnyDoggyClicker.Currencies:CurrencyAsset
   Currency: {fileID: 11400000, guid: 0e8b63664982fba439bed01b5bf98f97, type: 2}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 60faad1a67bfb094e83c7e9efc49553c, type: 3}
   TextColor: {r: 0, g: 0.879385, b: 1, a: 1}

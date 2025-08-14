@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 
 namespace SunnyDoggyClicker.Currencies {
     public sealed class CurrencyBank {
         private readonly Dictionary<string, float> _balances = new Dictionary<string, float>();
         private readonly Dictionary<string, float> _balanceLimits = new Dictionary<string, float>();
+
+        public Action<string, float> BalanceChanged;
 
         public bool ExecuteTransaction(CurrencyTransaction transaction) {
             if (!ValidateTransaction(transaction)) {
@@ -40,13 +43,12 @@ namespace SunnyDoggyClicker.Currencies {
 
         private bool ProcessSingle(string currency, float amount) {
             _balances[currency] += amount;
+            BalanceChanged?.Invoke(currency, _balances[currency]);
             return true;
         }
 
         private bool ProcessExchange(string source, string target, float amount, float rate) {
-            _balances[source] -= amount;
-            _balances[target] += amount * rate;
-            return true;
+            return ProcessSingle(source, -amount) && ProcessSingle(target, amount * rate);
         }
 
         public float GetBalance(string currency) => _balances.TryGetValue(currency, out var balance) ? balance : 0;
