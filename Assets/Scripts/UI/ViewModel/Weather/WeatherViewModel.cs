@@ -1,6 +1,5 @@
 using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
@@ -47,8 +46,11 @@ namespace SunnyDoggyClicker.UI.ViewModel {
         }
 
         public void CancelCurrentRequest() {
-            _timer.Stop();
-            _timer.Dispose();
+            if (_timer != null) {
+                _timer.Stop();
+                _timer.Dispose();
+                _timer = null;
+            }
             _cts.Cancel();
             _cts = new CancellationTokenSource();
         }
