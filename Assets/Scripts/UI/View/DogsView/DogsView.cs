@@ -5,11 +5,9 @@ namespace SunnyDoggyClicker.UI.View.Dogs {
         public override string Name => nameof(DogsView);
 
         protected override void OnHide() {
-            Debug.Log($"{Name}::OnHide()");
         }
 
         protected override void OnShow() {
-            Debug.Log($"{Name}::OnShow()");
         }
     }
 }

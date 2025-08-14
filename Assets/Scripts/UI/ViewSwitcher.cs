@@ -18,6 +18,7 @@ namespace SunnyDoggyClicker.UI.View {
 
         public void Initialize() {
             _signalBus.Subscribe<ShowViewSignal>(OnShowViewSignal);
+            _ViewsToSwitch[0].Show();
         }
 
         private void OnShowViewSignal(ShowViewSignal view) {
